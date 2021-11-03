@@ -18,45 +18,80 @@ let choiseDifficult = prompt("Benvenuto al gioco Campo minato: scegli difficolta
 const difficolta = ["1", "2", "3"];
 const gridCont = document.querySelector(".grid");
 let contBomba = [];
-let bomba = false;
+let score = 0;
+
 
 // Il COMPUTER DEVE GENERARE 16 NUMERI RANDOM CHE SERVONO PER LE BOMBE
-while (contBomba.length < 16) {
-    let numbBomba = Math.floor(Math.random() * 100) + 1;
-    if(contBomba.indexOf(numbBomba) === -1) {
-        contBomba.push(numbBomba);
-    }
-}
-console.log(contBomba);
+// while (contBomba.length < 16) {
+//     let numbBomba = Math.floor(Math.random() * 100) + 1;
+//     if(contBomba.indexOf(numbBomba) === -1) {
+//         contBomba.push(numbBomba);
+//     }
+// }
+// console.log(contBomba);
 
 
 // SE L'USER SCEGLIE DIFFICOLTA 1
 if (choiseDifficult === difficolta[0]) {
     numeroBlocchi = 100;
     defaultClass = "square";
+    while (contBomba.length < 16) {
+        let numbBomba = Math.floor(Math.random() * 100) + 1;
+        if(contBomba.indexOf(numbBomba) === -1) {
+            contBomba.push(numbBomba);
+        }
+    }
+    console.log(contBomba);
 
 // SE L'USER SCEGLIE DIFFICOLTA 2
 } else if (choiseDifficult === difficolta[1]) {
     numeroBlocchi = 81;
     defaultClass = "square1";
+    while (contBomba.length < 16) {
+        let numbBomba = Math.floor(Math.random() * 81) + 1;
+        if(contBomba.indexOf(numbBomba) === -1) {
+            contBomba.push(numbBomba);
+        }
+    }
+    console.log(contBomba);
 
 // SE L'USER SCEGLIE DIFFICOLTA 3
 } if (choiseDifficult === difficolta[2]) {
     numeroBlocchi = 49;
     defaultClass = "square2";
+    while (contBomba.length < 16) {
+        let numbBomba = Math.floor(Math.random() * 49) + 1;
+        if(contBomba.indexOf(numbBomba) === -1) {
+            contBomba.push(numbBomba);
+        }
+    }
+    console.log(contBomba);
 }
+
+
 
 // CICLO DOPO LA SCELTA DELLA DIFFICOLTA
 for (i = 1; i <= numeroBlocchi; i++) {
     let newElement = generaElemento("div", defaultClass);
+    newElement.setAttribute("id", i);
     newElement.addEventListener('click', 
         function() {
-        this.classList.add("selection_square");
+            let id = parseInt(newElement.id);
+            if(contBomba.includes(id)) {
+                this.classList.add("bomba");
+                alert("hai perso e hai totalizzato " + score + " punti");
+
+            } else if (contBomba !== id) {
+                this.classList.add("selection_square");
+                score++
+            }
         }
     );
-    newElement.innerText = i;
+    newElement.append(i);
     gridCont.appendChild(newElement);
 }
+
+
 
 // FUNZIONI
 function generaElemento(elementoGen, classPlus) {
@@ -64,7 +99,5 @@ function generaElemento(elementoGen, classPlus) {
     cont.classList.add(classPlus);
     return cont
 }
-
-
 
 
