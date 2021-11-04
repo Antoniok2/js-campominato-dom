@@ -13,7 +13,7 @@
 // Al termine della partita il software deve scoprire tutte le bombe e comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato un quadratino con un numero consentito. (quindi se ci pensate dovrete tenere traccia del punteggio).
 
 
-
+// VARIABILI
 let choiseDifficult = prompt("Benvenuto al gioco Campo minato: scegli difficolta: 1, 2, 3");
 const difficolta = ["1", "2", "3"];
 const gridCont = document.querySelector(".grid");
@@ -21,20 +21,12 @@ let contBomba = [];
 let score = 0;
 
 
-// Il COMPUTER DEVE GENERARE 16 NUMERI RANDOM CHE SERVONO PER LE BOMBE
-// while (contBomba.length < 16) {
-//     let numbBomba = Math.floor(Math.random() * 100) + 1;
-//     if(contBomba.indexOf(numbBomba) === -1) {
-//         contBomba.push(numbBomba);
-//     }
-// }
-// console.log(contBomba);
-
 
 // SE L'USER SCEGLIE DIFFICOLTA 1
 if (choiseDifficult === difficolta[0]) {
     numeroBlocchi = 100;
     defaultClass = "square";
+    tentativi = 84;
     while (contBomba.length < 16) {
         let numbBomba = Math.floor(Math.random() * 100) + 1;
         if(contBomba.indexOf(numbBomba) === -1) {
@@ -47,6 +39,7 @@ if (choiseDifficult === difficolta[0]) {
 } else if (choiseDifficult === difficolta[1]) {
     numeroBlocchi = 81;
     defaultClass = "square1";
+    tentativi = 65;
     while (contBomba.length < 16) {
         let numbBomba = Math.floor(Math.random() * 81) + 1;
         if(contBomba.indexOf(numbBomba) === -1) {
@@ -59,6 +52,7 @@ if (choiseDifficult === difficolta[0]) {
 } if (choiseDifficult === difficolta[2]) {
     numeroBlocchi = 49;
     defaultClass = "square2";
+    tentativi = 33;
     while (contBomba.length < 16) {
         let numbBomba = Math.floor(Math.random() * 49) + 1;
         if(contBomba.indexOf(numbBomba) === -1) {
@@ -79,11 +73,11 @@ for (i = 1; i <= numeroBlocchi; i++) {
             let id = parseInt(newElement.id);
             if(contBomba.includes(id)) {
                 this.classList.add("bomba");
-                alert("hai perso e hai totalizzato " + score + " punti");
+                alert("Hai perso e hai totalizzato: " + score + " punti");
 
             } else if (contBomba !== id) {
                 this.classList.add("selection_square");
-                score++
+                ++score;
             }
         }
     );

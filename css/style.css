@@ -7,7 +7,7 @@
 .container {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(122, 22, 22);
+    background-color: rgb(218, 101, 101);
 }
 
 h1 {
@@ -28,9 +28,9 @@ h1 {
 .square {
     width: calc(100% / 10);
     height: 50px;
-    background-color: darkblue;
+    background-color: rgb(31, 31, 201);
     border: 2px solid white;
-    color: white;
+    color: greenyellow;
 }
 
 .square1 {
@@ -38,6 +38,7 @@ h1 {
     height: 50px;
     background-color: darkblue;
     border: 2px solid white;
+    color: yellow;
 }
 
 .square2 {
@@ -45,6 +46,7 @@ h1 {
     height: 50px;
     background-color: darkblue;
     border: 2px solid white;
+    color: red;
 }
 
 .selection_square {
